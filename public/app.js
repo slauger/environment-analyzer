@@ -17,6 +17,14 @@ const tabLoaders = {
   user: loadUserTab,
   envkeys: loadEnvkeysTab,
   kubernetes: loadKubernetesTab,
+  dns: loadDnsTab,
+  capabilities: loadCapabilitiesTab,
+  securitymodules: loadSecuritymodulesTab,
+  systemusers: loadSystemusersTab,
+  mounts: loadMountsTab,
+  outbound: loadOutboundTab,
+  internals: loadInternalsTab,
+  nix: loadNixTab,
 };
 
 const loadedTabs = new Set();

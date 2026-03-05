@@ -14,6 +14,14 @@ A Node.js web application that analyzes the runtime environment of a workspace. 
 - **User Context** — UID, GID, groups
 - **Env Vars** — All environment variable key names of the running process
 - **Kubernetes Probe** — Checks for K8s service account, namespace, and API access
+- **DNS** — Nameserver config from `/etc/resolv.conf` and DNS resolution probes (K8s, workspace, external)
+- **Linux Capabilities** — Decoded CapEff/CapPrm/CapBnd from `/proc/1/status`
+- **Security Modules** — AppArmor profile, Seccomp mode, active LSMs
+- **System Users** — Parsed `/etc/passwd` with human/system user classification
+- **Mounts** — All mounts from `/proc/mounts` (CephFS, tmpfs, overlay, etc.)
+- **Outbound Access** — TCP connect probes to external targets (DNS, HTTPS, npm, Nix cache) and external IP detection
+- **Codesphere Internals** — Recursive listing of `/etc/codesphere/shared-internal` and `~/.codesphere-internal`
+- **Nix** — Nix version, channels, installed packages, store size and path count
 
 ## Quick Start
 
@@ -23,7 +31,7 @@ A Node.js web application that analyzes the runtime environment of a workspace. 
 docker compose up --build
 ```
 
-Open http://localhost:8080
+Open http://localhost:3000
 
 ### Codesphere
 
@@ -73,6 +81,14 @@ docker-compose.yml     # Local development
 | `GET /api/security/network` | Listening ports |
 | `GET /api/security/user` | User context (UID, GID, groups) |
 | `GET /api/security/kubernetes` | K8s API probe |
+| `GET /api/security/dns` | DNS config and resolution probes |
+| `GET /api/security/capabilities` | Linux capabilities (CapEff/CapPrm/CapBnd) |
+| `GET /api/security/securitymodules` | AppArmor, Seccomp, LSM status |
+| `GET /api/security/systemusers` | /etc/passwd user list |
+| `GET /api/security/mounts` | /proc/mounts filesystem mounts |
+| `GET /api/security/outbound` | Outbound connectivity probes |
+| `GET /api/security/internals` | Codesphere internal paths listing |
+| `GET /api/security/nix` | Nix version, channels, store info |
 
 ## License
 

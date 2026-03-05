@@ -71,6 +71,14 @@ app.get('/api/security/system', (_req, res) => res.json(security.getSystemInfo()
 app.get('/api/security/network', (_req, res) => res.json(security.getNetworkInfo()));
 app.get('/api/security/user', (_req, res) => res.json(security.getUserContext()));
 app.get('/api/security/kubernetes', async (_req, res) => res.json(await security.getKubernetesInfo()));
+app.get('/api/security/dns', async (_req, res) => res.json(await security.getDnsInfo()));
+app.get('/api/security/capabilities', (_req, res) => res.json(security.getCapabilities()));
+app.get('/api/security/securitymodules', (_req, res) => res.json(security.getSecurityModules()));
+app.get('/api/security/systemusers', (_req, res) => res.json(security.getSystemUsers()));
+app.get('/api/security/mounts', (_req, res) => res.json(security.getMountInfo()));
+app.get('/api/security/outbound', async (_req, res) => res.json(await security.getOutboundAccess()));
+app.get('/api/security/internals', (_req, res) => res.json(security.getCodesphereInternals()));
+app.get('/api/security/nix', (_req, res) => res.json(security.getNixInfo()));
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Environment Analyzer running on http://0.0.0.0:${PORT}`);
