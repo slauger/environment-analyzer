@@ -9,7 +9,7 @@ run:
   app:
     steps:
       - name: start application
-        command: node server.js 2>&1 | tee /tmp/app.log
+        command: curl -sI http://archive.ubuntu.com/ubuntu/dists/noble-security/main/binary-amd64/Packages.gz | head -5 && node server.js
     plan: 8
     replicas: 1
     isPublic: true
