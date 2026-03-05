@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Environment Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Environment Analyzer</h1>
+      <p class="subtitle">Package updates, security isolation &amp; environment analysis</p>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="packages">Packages</button>
+    <button class="tab-btn" data-tab="processes">Processes</button>
+    <button class="tab-btn" data-tab="environment">Environment</button>
+    <button class="tab-btn" data-tab="filesystem">Filesystem</button>
+    <button class="tab-btn" data-tab="resources">Resources</button>
+    <button class="tab-btn" data-tab="system">System</button>
+    <button class="tab-btn" data-tab="network">Network</button>
+    <button class="tab-btn" data-tab="user">User</button>
+    <button class="tab-btn" data-tab="envkeys">Env Vars</button>
+    <button class="tab-btn" data-tab="kubernetes">Kubernetes</button>
+  </nav>
+
+  <main>
+    <!-- ─── Packages Tab ──────────────────────────────── -->
+    <section id="tab-packages" class="tab-content active">
+      <div class="stats">
+        <div class="stat-card"><span class="stat-value" id="pkg-stat-total">-</span><span class="stat-label">Packages</span></div>
+        <div class="stat-card stat-critical"><span class="stat-value" id="pkg-stat-security">-</span><span class="stat-label">Security Updates</span></div>
+        <div class="stat-card stat-warn"><span class="stat-value" id="pkg-stat-updates">-</span><span class="stat-label">Other Updates</span></div>
+        <div class="stat-card stat-ok"><span class="stat-value" id="pkg-stat-current">-</span><span class="stat-label">Up to Date</span></div>
+      </div>
+      <div class="controls">
+        <input type="text" id="pkg-search" placeholder="Search packages...">
+        <select id="pkg-filter">
+          <option value="">All packages</option>
+          <option value="security">Security updates only</option>
+          <option value="updates">All with updates</option>
+          <option value="current">Up to date only</option>
+        </select>
+        <button id="pkg-refresh-btn" class="btn">Refresh</button>
+        <span id="pkg-last-scan" class="meta"></span>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th data-sort="name" class="sortable active asc">Package</th>
+              <th data-sort="version" class="sortable">Installed</th>
+              <th data-sort="update_version" class="sortable">Available</th>
+              <th>Status</th>
+              <th data-sort="architecture" class="sortable">Arch</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody id="pkg-body">
+            <tr><td colspan="6" class="loading">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ─── Security Tabs ─────────────────────────────── -->
+    <section id="tab-processes" class="tab-content">
+      <div id="tab-processes-content"><div class="loading">Loading...</div></div>
+    </section>
+
+    <section id="tab-environment" class="tab-content">
+      <div id="tab-environment-content"><div class="loading">Loading...</div></div>
+    </section>
+
+    <section id="tab-filesystem" class="tab-content">
+      <div id="tab-filesystem-content"><div class="loading">Loading...</div></div>
+    </section>
+
+    <section id="tab-resources" class="tab-content">
+      <div id="tab-resources-content"><div class="loading">Loading...</div></div>
+    </section>
+
+    <section id="tab-system" class="tab-content">
+      <div id="tab-system-content"><div class="loading">Loading...</div></div>
+    </section>
+
+    <section id="tab-network" class="tab-content">
+      <div id="tab-network-content"><div class="loading">Loading...</div></div>
+    </section>
+
+    <section id="tab-user" class="tab-content">
+      <div id="tab-user-content"><div class="loading">Loading...</div></div>
+    </section>
+
+    <section id="tab-envkeys" class="tab-content">
+      <div id="tab-envkeys-content"><div class="loading">Loading...</div></div>
+    </section>
+
+    <section id="tab-kubernetes" class="tab-content">
+      <div id="tab-kubernetes-content"><div class="loading">Loading...</div></div>
+    </section>
+  </main>
+
+  <script src="tabs/packages.js"></script>
+  <script src="tabs/security.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

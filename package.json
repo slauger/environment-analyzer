@@ -1,0 +1,16 @@
+{
+  "name": "environment-analyzer",
+  "version": "1.0.0",
+  "description": "Analyze installed packages and runtime environment of a workspace",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"no tests yet\" && exit 0"
+  },
+  "author": "Simon Lauger <simon@lauger.de>",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^11.7.0",
+    "express": "^4.21.0"
+  }
+}

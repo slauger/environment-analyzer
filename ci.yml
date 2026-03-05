@@ -1,0 +1,18 @@
+schemaVersion: v0.2
+prepare:
+  steps:
+    - name: install dependencies
+      command: npm ci
+test:
+  steps: []
+run:
+  app:
+    steps:
+      - name: start application
+        command: node server.js
+    plan: 8
+    replicas: 1
+    isPublic: true
+    network:
+      path: /
+      stripPath: false
