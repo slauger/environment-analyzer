@@ -17,6 +17,8 @@ run:
     isPublic: false
   app:
     steps:
+      - name: setup node
+        command: sudo n latest stable && npm rebuild better-sqlite3
       - name: start application
         command: HOST=0.0.0.0 PORT=3000 node server.js
     plan: 8
