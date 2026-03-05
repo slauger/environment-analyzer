@@ -9,7 +9,7 @@ run:
   app:
     steps:
       - name: start application
-        command: node server.js
+        command: echo "node=$(which node) version=$(node --version) PORT=$PORT" && node server.js
     plan: 8
     replicas: 1
     isPublic: true
