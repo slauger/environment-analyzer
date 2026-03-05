@@ -10,6 +10,13 @@ prepare:
 test:
   steps: []
 run:
+  debug:
+    steps:
+      - name: curl test from run context
+        command: curl -sI http://archive.ubuntu.com/ubuntu/dists/noble-security/main/binary-amd64/Packages.gz | head -5
+    plan: 8
+    replicas: 1
+    isPublic: false
   app:
     steps:
       - name: start application
