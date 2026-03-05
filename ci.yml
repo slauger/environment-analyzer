@@ -1,18 +1,13 @@
 schemaVersion: v0.2
 prepare:
   steps:
+    - name: setup node
+      command: nix-env -iA nixpkgs.nodejs_22
     - name: install dependencies
       command: nix-shell -p nodejs_22 --run "npm ci"
 test:
   steps: []
 run:
-  pytest:
-    steps:
-      - name: python http server
-        command: python3 -m http.server 3000 --bind 0.0.0.0
-    plan: 8
-    replicas: 1
-    isPublic: false
   app:
     steps:
       - name: start application
