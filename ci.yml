@@ -2,7 +2,7 @@ schemaVersion: v0.2
 prepare:
   steps:
     - name: setup node
-      command: sudo n latest stable
+      command: nix-env -iA nixpkgs.nodejs_22
     - name: install dependencies
       command: npm ci
 test:
@@ -17,10 +17,8 @@ run:
     isPublic: false
   app:
     steps:
-      - name: setup node
-        command: sudo n latest stable && npm rebuild better-sqlite3
       - name: start application
-        command: HOST=0.0.0.0 PORT=3000 node server.js
+        command: nix-shell -p nodejs_22 --run "HOST=0.0.0.0 PORT=3000 node server.js"
     plan: 8
     replicas: 1
     isPublic: true
