@@ -1,29 +1,19 @@
 schemaVersion: v0.2
 prepare:
   steps:
+    - name: setup node
+      command: sudo n latest stable
     - name: install dependencies
       command: npm ci
-    - name: test network
-      command: curl -sI http://archive.ubuntu.com/ubuntu/dists/noble-security/main/binary-amd64/Packages.gz | head -5
-    - name: test node
-      command: node --version && node -e "require('better-sqlite3'); console.log('sqlite ok')"
 test:
   steps: []
 run:
-  pytest:
-    steps:
-      - name: python http server
-        command: python3 -m http.server 3000 --bind 0.0.0.0
-    plan: 8
-    replicas: 1
-    isPublic: false
   app:
     steps:
       - name: start application
-        command: node server.js
+        command: HOST=0.0.0.0 PORT=3000 node server.js
     plan: 8
     replicas: 1
     isPublic: true
     network:
       path: /
-      stripPath: false
