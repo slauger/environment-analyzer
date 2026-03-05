@@ -1,10 +1,8 @@
 schemaVersion: v0.2
 prepare:
   steps:
-    - name: setup node
-      command: nix-env -iA nixpkgs.nodejs_22
     - name: install dependencies
-      command: npm ci
+      command: nix-shell -p nodejs_22 --run "npm ci"
 test:
   steps: []
 run:
