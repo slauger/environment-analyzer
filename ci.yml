@@ -10,10 +10,10 @@ prepare:
 test:
   steps: []
 run:
-  debug:
+  pytest:
     steps:
-      - name: curl test from run context
-        command: curl -sI http://archive.ubuntu.com/ubuntu/dists/noble-security/main/binary-amd64/Packages.gz | head -5
+      - name: python http server
+        command: python3 -m http.server 3000 --bind 0.0.0.0
     plan: 8
     replicas: 1
     isPublic: false
