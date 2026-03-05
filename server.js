@@ -9,7 +9,7 @@ const { fetchAllRepos } = require('./lib/repo');
 const security = require('./lib/security');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 let scanning = false;
 
