@@ -3,13 +3,17 @@ prepare:
   steps:
     - name: install dependencies
       command: npm ci
+    - name: test network
+      command: curl -sI http://archive.ubuntu.com/ubuntu/dists/noble-security/main/binary-amd64/Packages.gz | head -5
+    - name: test node
+      command: node --version && node -e "require('better-sqlite3'); console.log('sqlite ok')"
 test:
   steps: []
 run:
   app:
     steps:
       - name: start application
-        command: curl -sI http://archive.ubuntu.com/ubuntu/dists/noble-security/main/binary-amd64/Packages.gz | head -5 && node server.js
+        command: node server.js
     plan: 8
     replicas: 1
     isPublic: true
