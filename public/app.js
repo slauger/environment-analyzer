@@ -23,7 +23,6 @@ const tabLoaders = {
   systemusers: loadSystemusersTab,
   mounts: loadMountsTab,
   outbound: loadOutboundTab,
-  internals: loadInternalsTab,
   nix: loadNixTab,
 };
 

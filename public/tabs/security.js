@@ -547,52 +547,6 @@ async function loadOutboundTab() {
   `;
 }
 
-// ─── Tab: Internals ─────────────────────────────────────────────
-
-async function loadInternalsTab() {
-  const data = await loadSecurityData();
-  const el = document.getElementById('tab-internals-content');
-  const d = data.internals;
-
-  if (!d.available) {
-    el.innerHTML = notAvailable('No Codesphere internal paths accessible');
-    return;
-  }
-
-  function renderEntries(entries, indent) {
-    if (!entries) return '';
-    return entries.map(e => {
-      const sizeStr = e.size !== null ? ` (${formatBytes(e.size)})` : '';
-      const icon = e.isDirectory ? '📁' : '📄';
-      let html = `<tr><td style="padding-left:${indent * 1.5}rem">${icon} <code>${esc(e.name)}</code>${sizeStr}</td></tr>`;
-      if (e.children && e.children.length) {
-        html += renderEntries(e.children, indent + 1);
-      }
-      return html;
-    }).join('');
-  }
-
-  function formatBytes(bytes) {
-    if (bytes < 1024) return bytes + ' B';
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
-    return (bytes / 1024 / 1024).toFixed(1) + ' MB';
-  }
-
-  el.innerHTML = d.paths.map(p => `
-    <h3><code>${esc(p.base)}</code></h3>
-    ${p.error ? `<p>${esc(p.error)}</p>` : `
-      <div class="table-wrapper">
-        <table>
-          <thead><tr><th>Entry</th></tr></thead>
-          <tbody>
-            ${p.entries && p.entries.length ? renderEntries(p.entries, 0) : '<tr><td>Empty</td></tr>'}
-          </tbody>
-        </table>
-      </div>
-    `}
-  `).join('');
-}
-
 // ─── Tab: Nix ───────────────────────────────────────────────────
 
 async function loadNixTab() {

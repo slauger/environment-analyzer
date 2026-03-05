@@ -20,7 +20,6 @@ A Node.js web application that analyzes the runtime environment of a workspace. 
 - **System Users** — Parsed `/etc/passwd` with human/system user classification
 - **Mounts** — All mounts from `/proc/mounts` (CephFS, tmpfs, overlay, etc.)
 - **Outbound Access** — TCP connect probes to external targets (DNS, HTTPS, npm, Nix cache) and external IP detection
-- **Codesphere Internals** — Recursive listing of `/etc/codesphere/shared-internal` and `~/.codesphere-internal`
 - **Nix** — Nix version, channels, installed packages, store size and path count
 
 ## Quick Start
@@ -87,7 +86,6 @@ docker-compose.yml     # Local development
 | `GET /api/security/systemusers` | /etc/passwd user list |
 | `GET /api/security/mounts` | /proc/mounts filesystem mounts |
 | `GET /api/security/outbound` | Outbound connectivity probes |
-| `GET /api/security/internals` | Codesphere internal paths listing |
 | `GET /api/security/nix` | Nix version, channels, store info |
 
 ## License

@@ -77,7 +77,6 @@ app.get('/api/security/securitymodules', (_req, res) => res.json(security.getSec
 app.get('/api/security/systemusers', (_req, res) => res.json(security.getSystemUsers()));
 app.get('/api/security/mounts', (_req, res) => res.json(security.getMountInfo()));
 app.get('/api/security/outbound', async (_req, res) => res.json(await security.getOutboundAccess()));
-app.get('/api/security/internals', (_req, res) => res.json(security.getCodesphereInternals()));
 app.get('/api/security/nix', (_req, res) => res.json(security.getNixInfo()));
 
 app.listen(PORT, '0.0.0.0', () => {
