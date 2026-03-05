@@ -12,15 +12,23 @@ run:
     steps:
       - name: python http server
         command: python3 -m http.server 3000 --bind 0.0.0.0
-    plan: 8
+    plan: 201
     replicas: 1
-    isPublic: false
+    network:
+      ports:
+        - port: 3000
+          isPublic: false
   app:
     steps:
       - name: start application
         command: HOST=0.0.0.0 PORT=3000 node server.js
-    plan: 8
+    plan: 201
     replicas: 1
-    isPublic: true
     network:
-      path: /
+      ports:
+        - port: 3000
+          isPublic: true
+      paths:
+        - port: 3000
+          path: /
+    env: {}
